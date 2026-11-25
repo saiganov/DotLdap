@@ -1,0 +1,21 @@
+name: Dependency review
+
+# Fails a PR that adds a package or action with a known vulnerability of moderate severity or worse.
+on:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  review:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: write
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/dependency-review-action@v5.0.1
+        with:
+          fail-on-severity: moderate
+          comment-summary-in-pr: on-failure
