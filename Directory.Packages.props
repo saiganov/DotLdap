@@ -6,7 +6,7 @@
   <!-- The library has no package dependencies: everything it needs is in the .NET 8 base library. -->
 
   <ItemGroup Label="Build Dependencies">
-    <PackageVersion Include="Microsoft.SourceLink.GitHub" Version="8.0.0" />
+    <PackageVersion Include="Microsoft.SourceLink.GitHub" Version="11.0.100" />
     <PackageVersion Include="Microsoft.CodeAnalysis.PublicApiAnalyzers" Version="5.6.0" />
   </ItemGroup>
 
