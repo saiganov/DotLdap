@@ -1,0 +1,687 @@
+#nullable enable
+abstract DotLdap.Testing.Protocol.LdapFilter.<Clone>$() -> DotLdap.Testing.Protocol.LdapFilter!
+abstract DotLdap.Testing.Protocol.LdapRequest.<Clone>$() -> DotLdap.Testing.Protocol.LdapRequest!
+const DotLdap.Testing.Protocol.BindRequest.Plain = "PLAIN" -> string!
+const DotLdap.Testing.Protocol.BindRequest.Sicily = "NTLM (Sicily)" -> string!
+const DotLdap.Testing.Protocol.ExtendedRequest.PasswordModify = "1.3.6.1.4.1.4203.1.11.1" -> string!
+const DotLdap.Testing.Protocol.ExtendedRequest.StartTls = "1.3.6.1.4.1.1466.20037" -> string!
+const DotLdap.Testing.Protocol.ExtendedRequest.WhoAmI = "1.3.6.1.4.1.4203.1.11.3" -> string!
+DotLdap.Testing.AttributeSyntax
+DotLdap.Testing.AttributeSyntax.Boolean = 4 -> DotLdap.Testing.AttributeSyntax
+DotLdap.Testing.AttributeSyntax.CaseExactString = 13 -> DotLdap.Testing.AttributeSyntax
+DotLdap.Testing.AttributeSyntax.CaseIgnoreString = 12 -> DotLdap.Testing.AttributeSyntax
+DotLdap.Testing.AttributeSyntax.DirectoryString = 0 -> DotLdap.Testing.AttributeSyntax
+DotLdap.Testing.AttributeSyntax.DistinguishedName = 1 -> DotLdap.Testing.AttributeSyntax
+DotLdap.Testing.AttributeSyntax.DnWithBinary = 15 -> DotLdap.Testing.AttributeSyntax
+DotLdap.Testing.AttributeSyntax.DnWithString = 16 -> DotLdap.Testing.AttributeSyntax
+DotLdap.Testing.AttributeSyntax.GeneralizedTime = 5 -> DotLdap.Testing.AttributeSyntax
+DotLdap.Testing.AttributeSyntax.IA5String = 9 -> DotLdap.Testing.AttributeSyntax
+DotLdap.Testing.AttributeSyntax.Integer = 2 -> DotLdap.Testing.AttributeSyntax
+DotLdap.Testing.AttributeSyntax.LargeInteger = 3 -> DotLdap.Testing.AttributeSyntax
+DotLdap.Testing.AttributeSyntax.NumericString = 11 -> DotLdap.Testing.AttributeSyntax
+DotLdap.Testing.AttributeSyntax.OctetString = 7 -> DotLdap.Testing.AttributeSyntax
+DotLdap.Testing.AttributeSyntax.Oid = 8 -> DotLdap.Testing.AttributeSyntax
+DotLdap.Testing.AttributeSyntax.PrintableString = 10 -> DotLdap.Testing.AttributeSyntax
+DotLdap.Testing.AttributeSyntax.SecurityDescriptor = 14 -> DotLdap.Testing.AttributeSyntax
+DotLdap.Testing.AttributeSyntax.UtcTime = 6 -> DotLdap.Testing.AttributeSyntax
+DotLdap.Testing.DirectoryFlavor
+DotLdap.Testing.DirectoryFlavor.ActiveDirectory = 1 -> DotLdap.Testing.DirectoryFlavor
+DotLdap.Testing.DirectoryFlavor.Generic = 0 -> DotLdap.Testing.DirectoryFlavor
+DotLdap.Testing.DirectoryLayout
+DotLdap.Testing.DirectoryLayout.BaseDn.get -> DotLdap.Testing.DistinguishedName!
+DotLdap.Testing.DirectoryLayout.BaseDn.init -> void
+DotLdap.Testing.DirectoryLayout.DirectoryLayout() -> void
+DotLdap.Testing.DirectoryLayout.DomainName.get -> string!
+DotLdap.Testing.DirectoryLayout.Flavor.get -> DotLdap.Testing.DirectoryFlavor
+DotLdap.Testing.DirectoryLayout.Flavor.init -> void
+DotLdap.Testing.DirectoryLayout.GroupsContainer.get -> string?
+DotLdap.Testing.DirectoryLayout.GroupsContainer.init -> void
+DotLdap.Testing.DirectoryLayout.GroupsDn.get -> DotLdap.Testing.DistinguishedName!
+DotLdap.Testing.DirectoryLayout.IsActiveDirectory.get -> bool
+DotLdap.Testing.DirectoryLayout.LockoutDuration.get -> System.TimeSpan
+DotLdap.Testing.DirectoryLayout.LockoutDuration.set -> void
+DotLdap.Testing.DirectoryLayout.UsersContainer.get -> string?
+DotLdap.Testing.DirectoryLayout.UsersContainer.init -> void
+DotLdap.Testing.DirectoryLayout.UsersDn.get -> DotLdap.Testing.DistinguishedName!
+DotLdap.Testing.DirectorySeedExtensions
+DotLdap.Testing.DistinguishedName
+DotLdap.Testing.DistinguishedName.Child(string! type, string! value) -> DotLdap.Testing.DistinguishedName!
+DotLdap.Testing.DistinguishedName.Equals(DotLdap.Testing.DistinguishedName? other) -> bool
+DotLdap.Testing.DistinguishedName.IsChildOf(DotLdap.Testing.DistinguishedName! other) -> bool
+DotLdap.Testing.DistinguishedName.IsRoot.get -> bool
+DotLdap.Testing.DistinguishedName.IsWithin(DotLdap.Testing.DistinguishedName! other) -> bool
+DotLdap.Testing.DistinguishedName.Leaf.get -> DotLdap.Testing.Rdn?
+DotLdap.Testing.DistinguishedName.Normalized.get -> string!
+DotLdap.Testing.DistinguishedName.Parent.get -> DotLdap.Testing.DistinguishedName?
+DotLdap.Testing.DistinguishedName.Rdns.get -> System.Collections.Generic.IReadOnlyList<DotLdap.Testing.Rdn!>!
+DotLdap.Testing.Entry
+DotLdap.Testing.Entry.Add(string! name, params string![]! values) -> DotLdap.Testing.Entry!
+DotLdap.Testing.Entry.AddBinary(string! name, params byte[]![]! values) -> DotLdap.Testing.Entry!
+DotLdap.Testing.Entry.Attributes.get -> System.Collections.Generic.IReadOnlyCollection<DotLdap.Testing.EntryAttribute!>!
+DotLdap.Testing.Entry.Clone() -> DotLdap.Testing.Entry!
+DotLdap.Testing.Entry.Dn.get -> DotLdap.Testing.DistinguishedName!
+DotLdap.Testing.Entry.Entry(DotLdap.Testing.DistinguishedName! dn) -> void
+DotLdap.Testing.Entry.GetString(string! name) -> string?
+DotLdap.Testing.Entry.GetStrings(string! name) -> System.Collections.Generic.IReadOnlyList<string!>!
+DotLdap.Testing.Entry.GetValues(string! name) -> System.Collections.Generic.IReadOnlyList<byte[]!>!
+DotLdap.Testing.Entry.Has(string! name) -> bool
+DotLdap.Testing.Entry.Remove(string! name) -> bool
+DotLdap.Testing.Entry.RemoveValue(string! name, string! value) -> bool
+DotLdap.Testing.Entry.Set(string! name, params string![]! values) -> DotLdap.Testing.Entry!
+DotLdap.Testing.Entry.SetBinary(string! name, params byte[]![]! values) -> DotLdap.Testing.Entry!
+DotLdap.Testing.EntryAttribute
+DotLdap.Testing.EntryAttribute.EntryAttribute(string! name) -> void
+DotLdap.Testing.EntryAttribute.Name.get -> string!
+DotLdap.Testing.EntryAttribute.StringValues.get -> System.Collections.Generic.IEnumerable<string!>!
+DotLdap.Testing.EntryAttribute.Values.get -> System.Collections.Generic.IReadOnlyList<byte[]!>!
+DotLdap.Testing.IDirectoryView
+DotLdap.Testing.IDirectoryView.Entries.get -> System.Collections.Generic.IReadOnlyList<DotLdap.Testing.Entry!>!
+DotLdap.Testing.IDirectoryView.Find(DotLdap.Testing.DistinguishedName! dn) -> DotLdap.Testing.Entry?
+DotLdap.Testing.IDirectoryView.GroupsOf(DotLdap.Testing.DistinguishedName! member, bool transitive) -> System.Collections.Generic.IReadOnlyCollection<DotLdap.Testing.DistinguishedName!>!
+DotLdap.Testing.InMemoryDirectory
+DotLdap.Testing.InMemoryDirectory.Add(DotLdap.Testing.Entry! entry) -> DotLdap.Testing.InMemoryDirectory!
+DotLdap.Testing.InMemoryDirectory.Add(string! dn, System.Action<DotLdap.Testing.Entry!>? configure = null) -> DotLdap.Testing.InMemoryDirectory!
+DotLdap.Testing.InMemoryDirectory.AddVirtualAttribute(DotLdap.Testing.IVirtualAttributeProvider! provider) -> DotLdap.Testing.InMemoryDirectory!
+DotLdap.Testing.InMemoryDirectory.AutoCreateParents.get -> bool
+DotLdap.Testing.InMemoryDirectory.AutoCreateParents.set -> void
+DotLdap.Testing.InMemoryDirectory.Clear() -> void
+DotLdap.Testing.InMemoryDirectory.Count.get -> int
+DotLdap.Testing.InMemoryDirectory.DefaultReferral.get -> System.Collections.Generic.IReadOnlyList<string!>!
+DotLdap.Testing.InMemoryDirectory.DefaultReferral.set -> void
+DotLdap.Testing.InMemoryDirectory.DefineAttribute(string! name) -> DotLdap.Testing.InMemoryDirectory!
+DotLdap.Testing.InMemoryDirectory.DefineAttribute(string! name, DotLdap.Testing.AttributeSyntax syntax, bool singleValued = false) -> DotLdap.Testing.InMemoryDirectory!
+DotLdap.Testing.InMemoryDirectory.Exists(DotLdap.Testing.DistinguishedName! dn) -> bool
+DotLdap.Testing.InMemoryDirectory.Find(DotLdap.Testing.DistinguishedName! dn) -> DotLdap.Testing.Entry?
+DotLdap.Testing.InMemoryDirectory.GroupsOf(DotLdap.Testing.DistinguishedName! member, bool transitive) -> System.Collections.Generic.IReadOnlyCollection<DotLdap.Testing.DistinguishedName!>!
+DotLdap.Testing.InMemoryDirectory.InMemoryDirectory(DotLdap.Testing.DirectoryLayout? layout = null) -> void
+DotLdap.Testing.InMemoryDirectory.IsReadOnly(DotLdap.Testing.DistinguishedName! user) -> bool
+DotLdap.Testing.InMemoryDirectory.Layout.get -> DotLdap.Testing.DirectoryLayout!
+DotLdap.Testing.InMemoryDirectory.Matches(DotLdap.Testing.Protocol.LdapFilter! filter, DotLdap.Testing.Entry! entry) -> bool
+DotLdap.Testing.InMemoryDirectory.Move(DotLdap.Testing.DistinguishedName! dn, DotLdap.Testing.DistinguishedName! newDn) -> void
+DotLdap.Testing.InMemoryDirectory.NamingContexts.get -> System.Collections.Generic.IReadOnlyList<DotLdap.Testing.DistinguishedName!>!
+DotLdap.Testing.InMemoryDirectory.Remove(DotLdap.Testing.DistinguishedName! dn) -> bool
+DotLdap.Testing.InMemoryDirectory.SchemaChecks.get -> bool
+DotLdap.Testing.InMemoryDirectory.SchemaChecks.set -> void
+DotLdap.Testing.InMemoryDirectory.Search(DotLdap.Testing.DistinguishedName! baseDn, DotLdap.Testing.Protocol.SearchScope scope, DotLdap.Testing.Protocol.LdapFilter! filter) -> System.Collections.Generic.IReadOnlyList<DotLdap.Testing.Entry!>!
+DotLdap.Testing.InMemoryDirectory.Search(string! baseDn, DotLdap.Testing.Protocol.SearchScope scope, string! filter) -> System.Collections.Generic.IReadOnlyList<DotLdap.Testing.Entry!>!
+DotLdap.Testing.InMemoryDirectory.SetReadOnly(DotLdap.Testing.DistinguishedName! user, bool readOnly = true) -> DotLdap.Testing.InMemoryDirectory!
+DotLdap.Testing.InMemoryDirectory.SyntaxOf(string! attributeName) -> DotLdap.Testing.AttributeSyntax
+DotLdap.Testing.InMemoryDirectory.Update(DotLdap.Testing.DistinguishedName! dn, System.Action<DotLdap.Testing.Entry!>! change) -> bool
+DotLdap.Testing.IVirtualAttributeProvider
+DotLdap.Testing.IVirtualAttributeProvider.AttributeName.get -> string!
+DotLdap.Testing.IVirtualAttributeProvider.GetValues(DotLdap.Testing.Entry! entry, DotLdap.Testing.IDirectoryView! directory) -> System.Collections.Generic.IReadOnlyList<byte[]!>!
+DotLdap.Testing.IVirtualAttributeProvider.IsOperational.get -> bool
+DotLdap.Testing.LdapRequestContext
+DotLdap.Testing.LdapRequestContext.<Clone>$() -> DotLdap.Testing.LdapRequestContext!
+DotLdap.Testing.LdapRequestContext.BoundDn.get -> DotLdap.Testing.DistinguishedName?
+DotLdap.Testing.LdapRequestContext.BoundDn.init -> void
+DotLdap.Testing.LdapRequestContext.ConnectionId.get -> long
+DotLdap.Testing.LdapRequestContext.ConnectionId.init -> void
+DotLdap.Testing.LdapRequestContext.Equals(DotLdap.Testing.LdapRequestContext? other) -> bool
+DotLdap.Testing.LdapRequestContext.IsTls.get -> bool
+DotLdap.Testing.LdapRequestContext.IsTls.init -> void
+DotLdap.Testing.LdapRequestContext.LdapRequestContext() -> void
+DotLdap.Testing.LdapRequestContext.Request.get -> DotLdap.Testing.Protocol.LdapRequest!
+DotLdap.Testing.LdapRequestContext.Request.init -> void
+DotLdap.Testing.LdapRequestInterceptor
+DotLdap.Testing.LdapServerFixture
+DotLdap.Testing.LdapServerFixture.Dispose() -> void
+DotLdap.Testing.LdapServerFixture.LdapServerFixture() -> void
+DotLdap.Testing.LdapServerFixture.Server.get -> DotLdap.Testing.LdapTestServer!
+DotLdap.Testing.LdapTestServer
+DotLdap.Testing.LdapTestServer.BaseDn.get -> DotLdap.Testing.DistinguishedName!
+DotLdap.Testing.LdapTestServer.Certificate.get -> System.Security.Cryptography.X509Certificates.X509Certificate2?
+DotLdap.Testing.LdapTestServer.CertificatePem.get -> string?
+DotLdap.Testing.LdapTestServer.ClearRequests() -> void
+DotLdap.Testing.LdapTestServer.Directory.get -> DotLdap.Testing.InMemoryDirectory!
+DotLdap.Testing.LdapTestServer.Dispose() -> void
+DotLdap.Testing.LdapTestServer.DisposeAsync() -> System.Threading.Tasks.ValueTask
+DotLdap.Testing.LdapTestServer.FailWith<TRequest>(DotLdap.Testing.Protocol.ResultCode code, string! message = "Injected by test") -> System.IDisposable!
+DotLdap.Testing.LdapTestServer.Host.get -> string!
+DotLdap.Testing.LdapTestServer.Intercept(DotLdap.Testing.LdapRequestInterceptor! interceptor) -> System.IDisposable!
+DotLdap.Testing.LdapTestServer.InternalErrors.get -> System.Collections.Generic.IReadOnlyList<System.Exception!>!
+DotLdap.Testing.LdapTestServer.Last<TRequest>() -> DotLdap.Testing.RecordedRequest?
+DotLdap.Testing.LdapTestServer.LastAnswer.get -> DotLdap.Testing.RecordedRequest?
+DotLdap.Testing.LdapTestServer.LdapsPort.get -> int?
+DotLdap.Testing.LdapTestServer.LdapsUrl.get -> string?
+DotLdap.Testing.LdapTestServer.Port.get -> int
+DotLdap.Testing.LdapTestServer.ProtocolErrors.get -> System.Collections.Generic.IReadOnlyList<string!>!
+DotLdap.Testing.LdapTestServer.Requests.get -> System.Collections.Generic.IReadOnlyList<DotLdap.Testing.RecordedRequest!>!
+DotLdap.Testing.LdapTestServer.Url.get -> string!
+DotLdap.Testing.LdapTestServerBuilder
+DotLdap.Testing.LdapTestServerBuilder.AllowAnonymousSearch(bool allow = true) -> DotLdap.Testing.LdapTestServerBuilder!
+DotLdap.Testing.LdapTestServerBuilder.AsActiveDirectory() -> DotLdap.Testing.LdapTestServerBuilder!
+DotLdap.Testing.LdapTestServerBuilder.Configure(System.Action<DotLdap.Testing.InMemoryDirectory!>! seed) -> DotLdap.Testing.LdapTestServerBuilder!
+DotLdap.Testing.LdapTestServerBuilder.LdapTestServerBuilder() -> void
+DotLdap.Testing.LdapTestServerBuilder.Start() -> DotLdap.Testing.LdapTestServer!
+DotLdap.Testing.LdapTestServerBuilder.WithBaseDn(string! baseDn) -> DotLdap.Testing.LdapTestServerBuilder!
+DotLdap.Testing.LdapTestServerBuilder.WithContainers(string? users = null, string? groups = null) -> DotLdap.Testing.LdapTestServerBuilder!
+DotLdap.Testing.LdapTestServerBuilder.WithDefaultReferral(params string![]! urls) -> DotLdap.Testing.LdapTestServerBuilder!
+DotLdap.Testing.LdapTestServerBuilder.WithEntry(string! dn, System.Action<DotLdap.Testing.Entry!>! configure) -> DotLdap.Testing.LdapTestServerBuilder!
+DotLdap.Testing.LdapTestServerBuilder.WithFlavor(DotLdap.Testing.DirectoryFlavor flavor) -> DotLdap.Testing.LdapTestServerBuilder!
+DotLdap.Testing.LdapTestServerBuilder.WithGroup(string! name, params string![]! members) -> DotLdap.Testing.LdapTestServerBuilder!
+DotLdap.Testing.LdapTestServerBuilder.WithJson(string! json) -> DotLdap.Testing.LdapTestServerBuilder!
+DotLdap.Testing.LdapTestServerBuilder.WithJsonFile(string! path) -> DotLdap.Testing.LdapTestServerBuilder!
+DotLdap.Testing.LdapTestServerBuilder.WithLdif(string! ldif) -> DotLdap.Testing.LdapTestServerBuilder!
+DotLdap.Testing.LdapTestServerBuilder.WithLdifFile(string! path) -> DotLdap.Testing.LdapTestServerBuilder!
+DotLdap.Testing.LdapTestServerBuilder.WithMaxSearchResults(int limit) -> DotLdap.Testing.LdapTestServerBuilder!
+DotLdap.Testing.LdapTestServerBuilder.WithMaxValuesPerAttribute(int limit) -> DotLdap.Testing.LdapTestServerBuilder!
+DotLdap.Testing.LdapTestServerBuilder.WithOptions(System.Action<DotLdap.Testing.LdapTestServerOptions!>! configure) -> DotLdap.Testing.LdapTestServerBuilder!
+DotLdap.Testing.LdapTestServerBuilder.WithPorts(int ldap, int ldaps = 0) -> DotLdap.Testing.LdapTestServerBuilder!
+DotLdap.Testing.LdapTestServerBuilder.WithReadOnlyUser(string! nameOrDn) -> DotLdap.Testing.LdapTestServerBuilder!
+DotLdap.Testing.LdapTestServerBuilder.WithReferral(string! dn, params string![]! urls) -> DotLdap.Testing.LdapTestServerBuilder!
+DotLdap.Testing.LdapTestServerBuilder.WithSchemaChecks(bool enable = true) -> DotLdap.Testing.LdapTestServerBuilder!
+DotLdap.Testing.LdapTestServerBuilder.WithTls(System.Security.Cryptography.X509Certificates.X509Certificate2? certificate = null) -> DotLdap.Testing.LdapTestServerBuilder!
+DotLdap.Testing.LdapTestServerBuilder.WithUser(string! name, string! password, System.Action<DotLdap.Testing.UserBuilder!>? configure = null) -> DotLdap.Testing.LdapTestServerBuilder!
+DotLdap.Testing.LdapTestServerOptions
+DotLdap.Testing.LdapTestServerOptions.AllowAnonymousSearch.get -> bool
+DotLdap.Testing.LdapTestServerOptions.AllowAnonymousSearch.set -> void
+DotLdap.Testing.LdapTestServerOptions.Certificate.get -> System.Security.Cryptography.X509Certificates.X509Certificate2?
+DotLdap.Testing.LdapTestServerOptions.Certificate.set -> void
+DotLdap.Testing.LdapTestServerOptions.EnableTls.get -> bool
+DotLdap.Testing.LdapTestServerOptions.EnableTls.set -> void
+DotLdap.Testing.LdapTestServerOptions.ExposeUserPassword.get -> bool
+DotLdap.Testing.LdapTestServerOptions.ExposeUserPassword.set -> void
+DotLdap.Testing.LdapTestServerOptions.LdapsPort.get -> int
+DotLdap.Testing.LdapTestServerOptions.LdapsPort.set -> void
+DotLdap.Testing.LdapTestServerOptions.LdapTestServerOptions() -> void
+DotLdap.Testing.LdapTestServerOptions.MaxMessageSize.get -> int
+DotLdap.Testing.LdapTestServerOptions.MaxMessageSize.set -> void
+DotLdap.Testing.LdapTestServerOptions.MaxSearchResults.get -> int
+DotLdap.Testing.LdapTestServerOptions.MaxSearchResults.set -> void
+DotLdap.Testing.LdapTestServerOptions.MaxValuesPerAttribute.get -> int?
+DotLdap.Testing.LdapTestServerOptions.MaxValuesPerAttribute.set -> void
+DotLdap.Testing.LdapTestServerOptions.Port.get -> int
+DotLdap.Testing.LdapTestServerOptions.Port.set -> void
+DotLdap.Testing.LdapTestServerOptions.RequireTlsForUnicodePwd.get -> bool
+DotLdap.Testing.LdapTestServerOptions.RequireTlsForUnicodePwd.set -> void
+DotLdap.Testing.LdifReader
+DotLdap.Testing.Protocol.AbandonRequest
+DotLdap.Testing.Protocol.AbandonRequest.AbandonRequest() -> void
+DotLdap.Testing.Protocol.AbandonRequest.Equals(DotLdap.Testing.Protocol.AbandonRequest? other) -> bool
+DotLdap.Testing.Protocol.AbandonRequest.MessageId.get -> int
+DotLdap.Testing.Protocol.AbandonRequest.MessageId.init -> void
+DotLdap.Testing.Protocol.AddRequest
+DotLdap.Testing.Protocol.AddRequest.AddRequest() -> void
+DotLdap.Testing.Protocol.AddRequest.Attributes.get -> System.Collections.Generic.IReadOnlyList<DotLdap.Testing.Protocol.PartialAttribute!>!
+DotLdap.Testing.Protocol.AddRequest.Attributes.init -> void
+DotLdap.Testing.Protocol.AddRequest.Dn.get -> string!
+DotLdap.Testing.Protocol.AddRequest.Dn.init -> void
+DotLdap.Testing.Protocol.AddRequest.Equals(DotLdap.Testing.Protocol.AddRequest? other) -> bool
+DotLdap.Testing.Protocol.BindRequest
+DotLdap.Testing.Protocol.BindRequest.BindRequest() -> void
+DotLdap.Testing.Protocol.BindRequest.Equals(DotLdap.Testing.Protocol.BindRequest? other) -> bool
+DotLdap.Testing.Protocol.BindRequest.IsSimple.get -> bool
+DotLdap.Testing.Protocol.BindRequest.Name.get -> string!
+DotLdap.Testing.Protocol.BindRequest.Name.init -> void
+DotLdap.Testing.Protocol.BindRequest.Password.get -> string?
+DotLdap.Testing.Protocol.BindRequest.Password.init -> void
+DotLdap.Testing.Protocol.BindRequest.SaslCredentials.get -> byte[]?
+DotLdap.Testing.Protocol.BindRequest.SaslCredentials.init -> void
+DotLdap.Testing.Protocol.BindRequest.SaslMechanism.get -> string?
+DotLdap.Testing.Protocol.BindRequest.SaslMechanism.init -> void
+DotLdap.Testing.Protocol.BindRequest.Version.get -> int
+DotLdap.Testing.Protocol.BindRequest.Version.init -> void
+DotLdap.Testing.Protocol.CompareRequest
+DotLdap.Testing.Protocol.CompareRequest.Attribute.get -> string!
+DotLdap.Testing.Protocol.CompareRequest.Attribute.init -> void
+DotLdap.Testing.Protocol.CompareRequest.CompareRequest() -> void
+DotLdap.Testing.Protocol.CompareRequest.Dn.get -> string!
+DotLdap.Testing.Protocol.CompareRequest.Dn.init -> void
+DotLdap.Testing.Protocol.CompareRequest.Equals(DotLdap.Testing.Protocol.CompareRequest? other) -> bool
+DotLdap.Testing.Protocol.CompareRequest.Value.get -> byte[]!
+DotLdap.Testing.Protocol.CompareRequest.Value.init -> void
+DotLdap.Testing.Protocol.DeleteRequest
+DotLdap.Testing.Protocol.DeleteRequest.DeleteRequest() -> void
+DotLdap.Testing.Protocol.DeleteRequest.Dn.get -> string!
+DotLdap.Testing.Protocol.DeleteRequest.Dn.init -> void
+DotLdap.Testing.Protocol.DeleteRequest.Equals(DotLdap.Testing.Protocol.DeleteRequest? other) -> bool
+DotLdap.Testing.Protocol.ExtendedRequest
+DotLdap.Testing.Protocol.ExtendedRequest.Equals(DotLdap.Testing.Protocol.ExtendedRequest? other) -> bool
+DotLdap.Testing.Protocol.ExtendedRequest.ExtendedRequest() -> void
+DotLdap.Testing.Protocol.ExtendedRequest.Oid.get -> string!
+DotLdap.Testing.Protocol.ExtendedRequest.Oid.init -> void
+DotLdap.Testing.Protocol.ExtendedRequest.Value.get -> byte[]?
+DotLdap.Testing.Protocol.ExtendedRequest.Value.init -> void
+DotLdap.Testing.Protocol.LdapFilter
+DotLdap.Testing.Protocol.LdapFilter.And
+DotLdap.Testing.Protocol.LdapFilter.And.And(System.Collections.Generic.IReadOnlyList<DotLdap.Testing.Protocol.LdapFilter!>! Filters) -> void
+DotLdap.Testing.Protocol.LdapFilter.And.Deconstruct(out System.Collections.Generic.IReadOnlyList<DotLdap.Testing.Protocol.LdapFilter!>! Filters) -> void
+DotLdap.Testing.Protocol.LdapFilter.And.Equals(DotLdap.Testing.Protocol.LdapFilter.And? other) -> bool
+DotLdap.Testing.Protocol.LdapFilter.And.Filters.get -> System.Collections.Generic.IReadOnlyList<DotLdap.Testing.Protocol.LdapFilter!>!
+DotLdap.Testing.Protocol.LdapFilter.And.Filters.init -> void
+DotLdap.Testing.Protocol.LdapFilter.Approx
+DotLdap.Testing.Protocol.LdapFilter.Approx.Approx(string! Attribute, byte[]! Value) -> void
+DotLdap.Testing.Protocol.LdapFilter.Approx.Attribute.get -> string!
+DotLdap.Testing.Protocol.LdapFilter.Approx.Attribute.init -> void
+DotLdap.Testing.Protocol.LdapFilter.Approx.Deconstruct(out string! Attribute, out byte[]! Value) -> void
+DotLdap.Testing.Protocol.LdapFilter.Approx.Equals(DotLdap.Testing.Protocol.LdapFilter.Approx? other) -> bool
+DotLdap.Testing.Protocol.LdapFilter.Approx.Value.get -> byte[]!
+DotLdap.Testing.Protocol.LdapFilter.Approx.Value.init -> void
+DotLdap.Testing.Protocol.LdapFilter.Equality
+DotLdap.Testing.Protocol.LdapFilter.Equality.Attribute.get -> string!
+DotLdap.Testing.Protocol.LdapFilter.Equality.Attribute.init -> void
+DotLdap.Testing.Protocol.LdapFilter.Equality.Deconstruct(out string! Attribute, out byte[]! Value) -> void
+DotLdap.Testing.Protocol.LdapFilter.Equality.Equality(string! Attribute, byte[]! Value) -> void
+DotLdap.Testing.Protocol.LdapFilter.Equality.Equals(DotLdap.Testing.Protocol.LdapFilter.Equality? other) -> bool
+DotLdap.Testing.Protocol.LdapFilter.Equality.Value.get -> byte[]!
+DotLdap.Testing.Protocol.LdapFilter.Equality.Value.init -> void
+DotLdap.Testing.Protocol.LdapFilter.Extensible
+DotLdap.Testing.Protocol.LdapFilter.Extensible.Attribute.get -> string?
+DotLdap.Testing.Protocol.LdapFilter.Extensible.Attribute.init -> void
+DotLdap.Testing.Protocol.LdapFilter.Extensible.Deconstruct(out string? MatchingRule, out string? Attribute, out byte[]! Value, out bool DnAttributes) -> void
+DotLdap.Testing.Protocol.LdapFilter.Extensible.DnAttributes.get -> bool
+DotLdap.Testing.Protocol.LdapFilter.Extensible.DnAttributes.init -> void
+DotLdap.Testing.Protocol.LdapFilter.Extensible.Equals(DotLdap.Testing.Protocol.LdapFilter.Extensible? other) -> bool
+DotLdap.Testing.Protocol.LdapFilter.Extensible.Extensible(string? MatchingRule, string? Attribute, byte[]! Value, bool DnAttributes) -> void
+DotLdap.Testing.Protocol.LdapFilter.Extensible.MatchingRule.get -> string?
+DotLdap.Testing.Protocol.LdapFilter.Extensible.MatchingRule.init -> void
+DotLdap.Testing.Protocol.LdapFilter.Extensible.Value.get -> byte[]!
+DotLdap.Testing.Protocol.LdapFilter.Extensible.Value.init -> void
+DotLdap.Testing.Protocol.LdapFilter.GreaterOrEqual
+DotLdap.Testing.Protocol.LdapFilter.GreaterOrEqual.Attribute.get -> string!
+DotLdap.Testing.Protocol.LdapFilter.GreaterOrEqual.Attribute.init -> void
+DotLdap.Testing.Protocol.LdapFilter.GreaterOrEqual.Deconstruct(out string! Attribute, out byte[]! Value) -> void
+DotLdap.Testing.Protocol.LdapFilter.GreaterOrEqual.Equals(DotLdap.Testing.Protocol.LdapFilter.GreaterOrEqual? other) -> bool
+DotLdap.Testing.Protocol.LdapFilter.GreaterOrEqual.GreaterOrEqual(string! Attribute, byte[]! Value) -> void
+DotLdap.Testing.Protocol.LdapFilter.GreaterOrEqual.Value.get -> byte[]!
+DotLdap.Testing.Protocol.LdapFilter.GreaterOrEqual.Value.init -> void
+DotLdap.Testing.Protocol.LdapFilter.LdapFilter(DotLdap.Testing.Protocol.LdapFilter! original) -> void
+DotLdap.Testing.Protocol.LdapFilter.LessOrEqual
+DotLdap.Testing.Protocol.LdapFilter.LessOrEqual.Attribute.get -> string!
+DotLdap.Testing.Protocol.LdapFilter.LessOrEqual.Attribute.init -> void
+DotLdap.Testing.Protocol.LdapFilter.LessOrEqual.Deconstruct(out string! Attribute, out byte[]! Value) -> void
+DotLdap.Testing.Protocol.LdapFilter.LessOrEqual.Equals(DotLdap.Testing.Protocol.LdapFilter.LessOrEqual? other) -> bool
+DotLdap.Testing.Protocol.LdapFilter.LessOrEqual.LessOrEqual(string! Attribute, byte[]! Value) -> void
+DotLdap.Testing.Protocol.LdapFilter.LessOrEqual.Value.get -> byte[]!
+DotLdap.Testing.Protocol.LdapFilter.LessOrEqual.Value.init -> void
+DotLdap.Testing.Protocol.LdapFilter.Not
+DotLdap.Testing.Protocol.LdapFilter.Not.Deconstruct(out DotLdap.Testing.Protocol.LdapFilter! Filter) -> void
+DotLdap.Testing.Protocol.LdapFilter.Not.Equals(DotLdap.Testing.Protocol.LdapFilter.Not? other) -> bool
+DotLdap.Testing.Protocol.LdapFilter.Not.Filter.get -> DotLdap.Testing.Protocol.LdapFilter!
+DotLdap.Testing.Protocol.LdapFilter.Not.Filter.init -> void
+DotLdap.Testing.Protocol.LdapFilter.Not.Not(DotLdap.Testing.Protocol.LdapFilter! Filter) -> void
+DotLdap.Testing.Protocol.LdapFilter.Or
+DotLdap.Testing.Protocol.LdapFilter.Or.Deconstruct(out System.Collections.Generic.IReadOnlyList<DotLdap.Testing.Protocol.LdapFilter!>! Filters) -> void
+DotLdap.Testing.Protocol.LdapFilter.Or.Equals(DotLdap.Testing.Protocol.LdapFilter.Or? other) -> bool
+DotLdap.Testing.Protocol.LdapFilter.Or.Filters.get -> System.Collections.Generic.IReadOnlyList<DotLdap.Testing.Protocol.LdapFilter!>!
+DotLdap.Testing.Protocol.LdapFilter.Or.Filters.init -> void
+DotLdap.Testing.Protocol.LdapFilter.Or.Or(System.Collections.Generic.IReadOnlyList<DotLdap.Testing.Protocol.LdapFilter!>! Filters) -> void
+DotLdap.Testing.Protocol.LdapFilter.Present
+DotLdap.Testing.Protocol.LdapFilter.Present.Attribute.get -> string!
+DotLdap.Testing.Protocol.LdapFilter.Present.Attribute.init -> void
+DotLdap.Testing.Protocol.LdapFilter.Present.Deconstruct(out string! Attribute) -> void
+DotLdap.Testing.Protocol.LdapFilter.Present.Equals(DotLdap.Testing.Protocol.LdapFilter.Present? other) -> bool
+DotLdap.Testing.Protocol.LdapFilter.Present.Present(string! Attribute) -> void
+DotLdap.Testing.Protocol.LdapFilter.Substrings
+DotLdap.Testing.Protocol.LdapFilter.Substrings.Any.get -> System.Collections.Generic.IReadOnlyList<byte[]!>!
+DotLdap.Testing.Protocol.LdapFilter.Substrings.Any.init -> void
+DotLdap.Testing.Protocol.LdapFilter.Substrings.Attribute.get -> string!
+DotLdap.Testing.Protocol.LdapFilter.Substrings.Attribute.init -> void
+DotLdap.Testing.Protocol.LdapFilter.Substrings.Deconstruct(out string! Attribute, out byte[]? Initial, out System.Collections.Generic.IReadOnlyList<byte[]!>! Any, out byte[]? Final) -> void
+DotLdap.Testing.Protocol.LdapFilter.Substrings.Equals(DotLdap.Testing.Protocol.LdapFilter.Substrings? other) -> bool
+DotLdap.Testing.Protocol.LdapFilter.Substrings.Final.get -> byte[]?
+DotLdap.Testing.Protocol.LdapFilter.Substrings.Final.init -> void
+DotLdap.Testing.Protocol.LdapFilter.Substrings.Initial.get -> byte[]?
+DotLdap.Testing.Protocol.LdapFilter.Substrings.Initial.init -> void
+DotLdap.Testing.Protocol.LdapFilter.Substrings.Substrings(string! Attribute, byte[]? Initial, System.Collections.Generic.IReadOnlyList<byte[]!>! Any, byte[]? Final) -> void
+DotLdap.Testing.Protocol.LdapRequest
+DotLdap.Testing.Protocol.LdapRequest.LdapRequest() -> void
+DotLdap.Testing.Protocol.LdapRequest.LdapRequest(DotLdap.Testing.Protocol.LdapRequest! original) -> void
+DotLdap.Testing.Protocol.LdapResult
+DotLdap.Testing.Protocol.LdapResult.<Clone>$() -> DotLdap.Testing.Protocol.LdapResult!
+DotLdap.Testing.Protocol.LdapResult.Code.get -> DotLdap.Testing.Protocol.ResultCode
+DotLdap.Testing.Protocol.LdapResult.Code.init -> void
+DotLdap.Testing.Protocol.LdapResult.Deconstruct(out DotLdap.Testing.Protocol.ResultCode Code, out string! Message, out string! MatchedDn, out System.Collections.Generic.IReadOnlyList<string!>? Referrals) -> void
+DotLdap.Testing.Protocol.LdapResult.Equals(DotLdap.Testing.Protocol.LdapResult? other) -> bool
+DotLdap.Testing.Protocol.LdapResult.LdapResult(DotLdap.Testing.Protocol.ResultCode Code, string! Message = "", string! MatchedDn = "", System.Collections.Generic.IReadOnlyList<string!>? Referrals = null) -> void
+DotLdap.Testing.Protocol.LdapResult.MatchedDn.get -> string!
+DotLdap.Testing.Protocol.LdapResult.MatchedDn.init -> void
+DotLdap.Testing.Protocol.LdapResult.Message.get -> string!
+DotLdap.Testing.Protocol.LdapResult.Message.init -> void
+DotLdap.Testing.Protocol.LdapResult.Referrals.get -> System.Collections.Generic.IReadOnlyList<string!>?
+DotLdap.Testing.Protocol.LdapResult.Referrals.init -> void
+DotLdap.Testing.Protocol.Modification
+DotLdap.Testing.Protocol.Modification.<Clone>$() -> DotLdap.Testing.Protocol.Modification!
+DotLdap.Testing.Protocol.Modification.Attribute.get -> DotLdap.Testing.Protocol.PartialAttribute!
+DotLdap.Testing.Protocol.Modification.Attribute.init -> void
+DotLdap.Testing.Protocol.Modification.Equals(DotLdap.Testing.Protocol.Modification? other) -> bool
+DotLdap.Testing.Protocol.Modification.Modification() -> void
+DotLdap.Testing.Protocol.Modification.Operation.get -> DotLdap.Testing.Protocol.ModificationType
+DotLdap.Testing.Protocol.Modification.Operation.init -> void
+DotLdap.Testing.Protocol.ModificationType
+DotLdap.Testing.Protocol.ModificationType.Add = 0 -> DotLdap.Testing.Protocol.ModificationType
+DotLdap.Testing.Protocol.ModificationType.Delete = 1 -> DotLdap.Testing.Protocol.ModificationType
+DotLdap.Testing.Protocol.ModificationType.Increment = 3 -> DotLdap.Testing.Protocol.ModificationType
+DotLdap.Testing.Protocol.ModificationType.Replace = 2 -> DotLdap.Testing.Protocol.ModificationType
+DotLdap.Testing.Protocol.ModifyDnRequest
+DotLdap.Testing.Protocol.ModifyDnRequest.DeleteOldRdn.get -> bool
+DotLdap.Testing.Protocol.ModifyDnRequest.DeleteOldRdn.init -> void
+DotLdap.Testing.Protocol.ModifyDnRequest.Dn.get -> string!
+DotLdap.Testing.Protocol.ModifyDnRequest.Dn.init -> void
+DotLdap.Testing.Protocol.ModifyDnRequest.Equals(DotLdap.Testing.Protocol.ModifyDnRequest? other) -> bool
+DotLdap.Testing.Protocol.ModifyDnRequest.ModifyDnRequest() -> void
+DotLdap.Testing.Protocol.ModifyDnRequest.NewRdn.get -> string!
+DotLdap.Testing.Protocol.ModifyDnRequest.NewRdn.init -> void
+DotLdap.Testing.Protocol.ModifyDnRequest.NewSuperior.get -> string?
+DotLdap.Testing.Protocol.ModifyDnRequest.NewSuperior.init -> void
+DotLdap.Testing.Protocol.ModifyRequest
+DotLdap.Testing.Protocol.ModifyRequest.Changes.get -> System.Collections.Generic.IReadOnlyList<DotLdap.Testing.Protocol.Modification!>!
+DotLdap.Testing.Protocol.ModifyRequest.Changes.init -> void
+DotLdap.Testing.Protocol.ModifyRequest.Dn.get -> string!
+DotLdap.Testing.Protocol.ModifyRequest.Dn.init -> void
+DotLdap.Testing.Protocol.ModifyRequest.Equals(DotLdap.Testing.Protocol.ModifyRequest? other) -> bool
+DotLdap.Testing.Protocol.ModifyRequest.ModifyRequest() -> void
+DotLdap.Testing.Protocol.PartialAttribute
+DotLdap.Testing.Protocol.PartialAttribute.<Clone>$() -> DotLdap.Testing.Protocol.PartialAttribute!
+DotLdap.Testing.Protocol.PartialAttribute.Equals(DotLdap.Testing.Protocol.PartialAttribute? other) -> bool
+DotLdap.Testing.Protocol.PartialAttribute.Name.get -> string!
+DotLdap.Testing.Protocol.PartialAttribute.Name.init -> void
+DotLdap.Testing.Protocol.PartialAttribute.PartialAttribute() -> void
+DotLdap.Testing.Protocol.PartialAttribute.StringValues.get -> System.Collections.Generic.IEnumerable<string!>!
+DotLdap.Testing.Protocol.PartialAttribute.Values.get -> System.Collections.Generic.IReadOnlyList<byte[]!>!
+DotLdap.Testing.Protocol.PartialAttribute.Values.init -> void
+DotLdap.Testing.Protocol.ResultCode
+DotLdap.Testing.Protocol.ResultCode.AdminLimitExceeded = 11 -> DotLdap.Testing.Protocol.ResultCode
+DotLdap.Testing.Protocol.ResultCode.AffectsMultipleDsas = 71 -> DotLdap.Testing.Protocol.ResultCode
+DotLdap.Testing.Protocol.ResultCode.AttributeOrValueExists = 20 -> DotLdap.Testing.Protocol.ResultCode
+DotLdap.Testing.Protocol.ResultCode.AuthMethodNotSupported = 7 -> DotLdap.Testing.Protocol.ResultCode
+DotLdap.Testing.Protocol.ResultCode.Busy = 51 -> DotLdap.Testing.Protocol.ResultCode
+DotLdap.Testing.Protocol.ResultCode.CompareFalse = 5 -> DotLdap.Testing.Protocol.ResultCode
+DotLdap.Testing.Protocol.ResultCode.CompareTrue = 6 -> DotLdap.Testing.Protocol.ResultCode
+DotLdap.Testing.Protocol.ResultCode.ConfidentialityRequired = 13 -> DotLdap.Testing.Protocol.ResultCode
+DotLdap.Testing.Protocol.ResultCode.ConstraintViolation = 19 -> DotLdap.Testing.Protocol.ResultCode
+DotLdap.Testing.Protocol.ResultCode.EntryAlreadyExists = 68 -> DotLdap.Testing.Protocol.ResultCode
+DotLdap.Testing.Protocol.ResultCode.InappropriateAuthentication = 48 -> DotLdap.Testing.Protocol.ResultCode
+DotLdap.Testing.Protocol.ResultCode.InsufficientAccessRights = 50 -> DotLdap.Testing.Protocol.ResultCode
+DotLdap.Testing.Protocol.ResultCode.InvalidAttributeSyntax = 21 -> DotLdap.Testing.Protocol.ResultCode
+DotLdap.Testing.Protocol.ResultCode.InvalidCredentials = 49 -> DotLdap.Testing.Protocol.ResultCode
+DotLdap.Testing.Protocol.ResultCode.InvalidDnSyntax = 34 -> DotLdap.Testing.Protocol.ResultCode
+DotLdap.Testing.Protocol.ResultCode.NamingViolation = 64 -> DotLdap.Testing.Protocol.ResultCode
+DotLdap.Testing.Protocol.ResultCode.NoSuchAttribute = 16 -> DotLdap.Testing.Protocol.ResultCode
+DotLdap.Testing.Protocol.ResultCode.NoSuchObject = 32 -> DotLdap.Testing.Protocol.ResultCode
+DotLdap.Testing.Protocol.ResultCode.NotAllowedOnNonLeaf = 66 -> DotLdap.Testing.Protocol.ResultCode
+DotLdap.Testing.Protocol.ResultCode.NotAllowedOnRdn = 67 -> DotLdap.Testing.Protocol.ResultCode
+DotLdap.Testing.Protocol.ResultCode.ObjectClassViolation = 65 -> DotLdap.Testing.Protocol.ResultCode
+DotLdap.Testing.Protocol.ResultCode.OperationsError = 1 -> DotLdap.Testing.Protocol.ResultCode
+DotLdap.Testing.Protocol.ResultCode.Other = 80 -> DotLdap.Testing.Protocol.ResultCode
+DotLdap.Testing.Protocol.ResultCode.ProtocolError = 2 -> DotLdap.Testing.Protocol.ResultCode
+DotLdap.Testing.Protocol.ResultCode.Referral = 10 -> DotLdap.Testing.Protocol.ResultCode
+DotLdap.Testing.Protocol.ResultCode.SaslBindInProgress = 14 -> DotLdap.Testing.Protocol.ResultCode
+DotLdap.Testing.Protocol.ResultCode.SizeLimitExceeded = 4 -> DotLdap.Testing.Protocol.ResultCode
+DotLdap.Testing.Protocol.ResultCode.StrongerAuthRequired = 8 -> DotLdap.Testing.Protocol.ResultCode
+DotLdap.Testing.Protocol.ResultCode.Success = 0 -> DotLdap.Testing.Protocol.ResultCode
+DotLdap.Testing.Protocol.ResultCode.TimeLimitExceeded = 3 -> DotLdap.Testing.Protocol.ResultCode
+DotLdap.Testing.Protocol.ResultCode.Unavailable = 52 -> DotLdap.Testing.Protocol.ResultCode
+DotLdap.Testing.Protocol.ResultCode.UnavailableCriticalExtension = 12 -> DotLdap.Testing.Protocol.ResultCode
+DotLdap.Testing.Protocol.ResultCode.UndefinedAttributeType = 17 -> DotLdap.Testing.Protocol.ResultCode
+DotLdap.Testing.Protocol.ResultCode.UnwillingToPerform = 53 -> DotLdap.Testing.Protocol.ResultCode
+DotLdap.Testing.Protocol.SearchRequest
+DotLdap.Testing.Protocol.SearchRequest.Attributes.get -> System.Collections.Generic.IReadOnlyList<string!>!
+DotLdap.Testing.Protocol.SearchRequest.Attributes.init -> void
+DotLdap.Testing.Protocol.SearchRequest.BaseDn.get -> string!
+DotLdap.Testing.Protocol.SearchRequest.BaseDn.init -> void
+DotLdap.Testing.Protocol.SearchRequest.Equals(DotLdap.Testing.Protocol.SearchRequest? other) -> bool
+DotLdap.Testing.Protocol.SearchRequest.Filter.get -> DotLdap.Testing.Protocol.LdapFilter!
+DotLdap.Testing.Protocol.SearchRequest.Filter.init -> void
+DotLdap.Testing.Protocol.SearchRequest.Scope.get -> DotLdap.Testing.Protocol.SearchScope
+DotLdap.Testing.Protocol.SearchRequest.Scope.init -> void
+DotLdap.Testing.Protocol.SearchRequest.SearchRequest() -> void
+DotLdap.Testing.Protocol.SearchRequest.SizeLimit.get -> int
+DotLdap.Testing.Protocol.SearchRequest.SizeLimit.init -> void
+DotLdap.Testing.Protocol.SearchRequest.TimeLimit.get -> int
+DotLdap.Testing.Protocol.SearchRequest.TimeLimit.init -> void
+DotLdap.Testing.Protocol.SearchRequest.TypesOnly.get -> bool
+DotLdap.Testing.Protocol.SearchRequest.TypesOnly.init -> void
+DotLdap.Testing.Protocol.SearchScope
+DotLdap.Testing.Protocol.SearchScope.BaseObject = 0 -> DotLdap.Testing.Protocol.SearchScope
+DotLdap.Testing.Protocol.SearchScope.SingleLevel = 1 -> DotLdap.Testing.Protocol.SearchScope
+DotLdap.Testing.Protocol.SearchScope.WholeSubtree = 2 -> DotLdap.Testing.Protocol.SearchScope
+DotLdap.Testing.Protocol.UnbindRequest
+DotLdap.Testing.Protocol.UnbindRequest.Equals(DotLdap.Testing.Protocol.UnbindRequest? other) -> bool
+DotLdap.Testing.Protocol.UnbindRequest.UnbindRequest() -> void
+DotLdap.Testing.Rdn
+DotLdap.Testing.Rdn.Components.get -> System.Collections.Generic.IReadOnlyList<(string! Type, string! Value)>!
+DotLdap.Testing.Rdn.Type.get -> string!
+DotLdap.Testing.Rdn.Value.get -> string!
+DotLdap.Testing.RecordedRequest
+DotLdap.Testing.RecordedRequest.<Clone>$() -> DotLdap.Testing.RecordedRequest!
+DotLdap.Testing.RecordedRequest.BoundDn.get -> DotLdap.Testing.DistinguishedName?
+DotLdap.Testing.RecordedRequest.BoundDn.init -> void
+DotLdap.Testing.RecordedRequest.ConnectionId.get -> long
+DotLdap.Testing.RecordedRequest.ConnectionId.init -> void
+DotLdap.Testing.RecordedRequest.Equals(DotLdap.Testing.RecordedRequest? other) -> bool
+DotLdap.Testing.RecordedRequest.IsTls.get -> bool
+DotLdap.Testing.RecordedRequest.IsTls.init -> void
+DotLdap.Testing.RecordedRequest.RecordedRequest() -> void
+DotLdap.Testing.RecordedRequest.Request.get -> DotLdap.Testing.Protocol.LdapRequest!
+DotLdap.Testing.RecordedRequest.Request.init -> void
+DotLdap.Testing.RecordedRequest.Result.get -> DotLdap.Testing.Protocol.LdapResult?
+DotLdap.Testing.RecordedRequest.Result.init -> void
+DotLdap.Testing.UserBuilder
+DotLdap.Testing.UserBuilder.AccountExpired() -> DotLdap.Testing.UserBuilder!
+DotLdap.Testing.UserBuilder.Attribute(string! name, params string![]! values) -> DotLdap.Testing.UserBuilder!
+DotLdap.Testing.UserBuilder.AttributeBinary(string! name, params byte[]![]! values) -> DotLdap.Testing.UserBuilder!
+DotLdap.Testing.UserBuilder.Disabled() -> DotLdap.Testing.UserBuilder!
+DotLdap.Testing.UserBuilder.DisplayName(string! name) -> DotLdap.Testing.UserBuilder!
+DotLdap.Testing.UserBuilder.Email(string! mail) -> DotLdap.Testing.UserBuilder!
+DotLdap.Testing.UserBuilder.FirstName(string! name) -> DotLdap.Testing.UserBuilder!
+DotLdap.Testing.UserBuilder.LastName(string! name) -> DotLdap.Testing.UserBuilder!
+DotLdap.Testing.UserBuilder.LockedOut() -> DotLdap.Testing.UserBuilder!
+DotLdap.Testing.UserBuilder.MemberOf(params string![]! groups) -> DotLdap.Testing.UserBuilder!
+DotLdap.Testing.UserBuilder.MustChangePassword() -> DotLdap.Testing.UserBuilder!
+DotLdap.Testing.UserBuilder.PasswordExpired() -> DotLdap.Testing.UserBuilder!
+DotLdap.Testing.UserBuilder.ReadOnly() -> DotLdap.Testing.UserBuilder!
+DotLdap.Testing.VirtualAttribute
+DotLdap.Testing.VirtualAttribute.AttributeName.get -> string!
+DotLdap.Testing.VirtualAttribute.GetValues(DotLdap.Testing.Entry! entry, DotLdap.Testing.IDirectoryView! directory) -> System.Collections.Generic.IReadOnlyList<byte[]!>!
+DotLdap.Testing.VirtualAttribute.IsOperational.get -> bool
+DotLdap.Testing.VirtualAttribute.VirtualAttribute(string! name, bool isOperational, System.Func<DotLdap.Testing.Entry!, DotLdap.Testing.IDirectoryView!, System.Collections.Generic.IEnumerable<string!>!>! values) -> void
+override DotLdap.Testing.DistinguishedName.Equals(object? obj) -> bool
+override DotLdap.Testing.DistinguishedName.GetHashCode() -> int
+override DotLdap.Testing.DistinguishedName.ToString() -> string!
+override DotLdap.Testing.Entry.ToString() -> string!
+override DotLdap.Testing.LdapRequestContext.Equals(object? obj) -> bool
+override DotLdap.Testing.LdapRequestContext.GetHashCode() -> int
+override DotLdap.Testing.LdapRequestContext.ToString() -> string!
+override DotLdap.Testing.Protocol.AbandonRequest.<Clone>$() -> DotLdap.Testing.Protocol.AbandonRequest!
+override DotLdap.Testing.Protocol.AbandonRequest.Equals(object? obj) -> bool
+override DotLdap.Testing.Protocol.AbandonRequest.GetHashCode() -> int
+override DotLdap.Testing.Protocol.AbandonRequest.ToString() -> string!
+override DotLdap.Testing.Protocol.AddRequest.<Clone>$() -> DotLdap.Testing.Protocol.AddRequest!
+override DotLdap.Testing.Protocol.AddRequest.Equals(object? obj) -> bool
+override DotLdap.Testing.Protocol.AddRequest.GetHashCode() -> int
+override DotLdap.Testing.Protocol.AddRequest.ToString() -> string!
+override DotLdap.Testing.Protocol.BindRequest.<Clone>$() -> DotLdap.Testing.Protocol.BindRequest!
+override DotLdap.Testing.Protocol.BindRequest.Equals(object? obj) -> bool
+override DotLdap.Testing.Protocol.BindRequest.GetHashCode() -> int
+override DotLdap.Testing.Protocol.BindRequest.ToString() -> string!
+override DotLdap.Testing.Protocol.CompareRequest.<Clone>$() -> DotLdap.Testing.Protocol.CompareRequest!
+override DotLdap.Testing.Protocol.CompareRequest.Equals(object? obj) -> bool
+override DotLdap.Testing.Protocol.CompareRequest.GetHashCode() -> int
+override DotLdap.Testing.Protocol.CompareRequest.ToString() -> string!
+override DotLdap.Testing.Protocol.DeleteRequest.<Clone>$() -> DotLdap.Testing.Protocol.DeleteRequest!
+override DotLdap.Testing.Protocol.DeleteRequest.Equals(object? obj) -> bool
+override DotLdap.Testing.Protocol.DeleteRequest.GetHashCode() -> int
+override DotLdap.Testing.Protocol.DeleteRequest.ToString() -> string!
+override DotLdap.Testing.Protocol.ExtendedRequest.<Clone>$() -> DotLdap.Testing.Protocol.ExtendedRequest!
+override DotLdap.Testing.Protocol.ExtendedRequest.Equals(object? obj) -> bool
+override DotLdap.Testing.Protocol.ExtendedRequest.GetHashCode() -> int
+override DotLdap.Testing.Protocol.ExtendedRequest.ToString() -> string!
+override DotLdap.Testing.Protocol.LdapFilter.And.<Clone>$() -> DotLdap.Testing.Protocol.LdapFilter.And!
+override DotLdap.Testing.Protocol.LdapFilter.And.Equals(object? obj) -> bool
+override DotLdap.Testing.Protocol.LdapFilter.And.GetHashCode() -> int
+override DotLdap.Testing.Protocol.LdapFilter.And.ToString() -> string!
+override DotLdap.Testing.Protocol.LdapFilter.Approx.<Clone>$() -> DotLdap.Testing.Protocol.LdapFilter.Approx!
+override DotLdap.Testing.Protocol.LdapFilter.Approx.Equals(object? obj) -> bool
+override DotLdap.Testing.Protocol.LdapFilter.Approx.GetHashCode() -> int
+override DotLdap.Testing.Protocol.LdapFilter.Approx.ToString() -> string!
+override DotLdap.Testing.Protocol.LdapFilter.Equality.<Clone>$() -> DotLdap.Testing.Protocol.LdapFilter.Equality!
+override DotLdap.Testing.Protocol.LdapFilter.Equality.Equals(object? obj) -> bool
+override DotLdap.Testing.Protocol.LdapFilter.Equality.GetHashCode() -> int
+override DotLdap.Testing.Protocol.LdapFilter.Equality.ToString() -> string!
+override DotLdap.Testing.Protocol.LdapFilter.Equals(object? obj) -> bool
+override DotLdap.Testing.Protocol.LdapFilter.Extensible.<Clone>$() -> DotLdap.Testing.Protocol.LdapFilter.Extensible!
+override DotLdap.Testing.Protocol.LdapFilter.Extensible.Equals(object? obj) -> bool
+override DotLdap.Testing.Protocol.LdapFilter.Extensible.GetHashCode() -> int
+override DotLdap.Testing.Protocol.LdapFilter.Extensible.ToString() -> string!
+override DotLdap.Testing.Protocol.LdapFilter.GetHashCode() -> int
+override DotLdap.Testing.Protocol.LdapFilter.GreaterOrEqual.<Clone>$() -> DotLdap.Testing.Protocol.LdapFilter.GreaterOrEqual!
+override DotLdap.Testing.Protocol.LdapFilter.GreaterOrEqual.Equals(object? obj) -> bool
+override DotLdap.Testing.Protocol.LdapFilter.GreaterOrEqual.GetHashCode() -> int
+override DotLdap.Testing.Protocol.LdapFilter.GreaterOrEqual.ToString() -> string!
+override DotLdap.Testing.Protocol.LdapFilter.LessOrEqual.<Clone>$() -> DotLdap.Testing.Protocol.LdapFilter.LessOrEqual!
+override DotLdap.Testing.Protocol.LdapFilter.LessOrEqual.Equals(object? obj) -> bool
+override DotLdap.Testing.Protocol.LdapFilter.LessOrEqual.GetHashCode() -> int
+override DotLdap.Testing.Protocol.LdapFilter.LessOrEqual.ToString() -> string!
+override DotLdap.Testing.Protocol.LdapFilter.Not.<Clone>$() -> DotLdap.Testing.Protocol.LdapFilter.Not!
+override DotLdap.Testing.Protocol.LdapFilter.Not.Equals(object? obj) -> bool
+override DotLdap.Testing.Protocol.LdapFilter.Not.GetHashCode() -> int
+override DotLdap.Testing.Protocol.LdapFilter.Not.ToString() -> string!
+override DotLdap.Testing.Protocol.LdapFilter.Or.<Clone>$() -> DotLdap.Testing.Protocol.LdapFilter.Or!
+override DotLdap.Testing.Protocol.LdapFilter.Or.Equals(object? obj) -> bool
+override DotLdap.Testing.Protocol.LdapFilter.Or.GetHashCode() -> int
+override DotLdap.Testing.Protocol.LdapFilter.Or.ToString() -> string!
+override DotLdap.Testing.Protocol.LdapFilter.Present.<Clone>$() -> DotLdap.Testing.Protocol.LdapFilter.Present!
+override DotLdap.Testing.Protocol.LdapFilter.Present.Equals(object? obj) -> bool
+override DotLdap.Testing.Protocol.LdapFilter.Present.GetHashCode() -> int
+override DotLdap.Testing.Protocol.LdapFilter.Present.ToString() -> string!
+override DotLdap.Testing.Protocol.LdapFilter.Substrings.<Clone>$() -> DotLdap.Testing.Protocol.LdapFilter.Substrings!
+override DotLdap.Testing.Protocol.LdapFilter.Substrings.Equals(object? obj) -> bool
+override DotLdap.Testing.Protocol.LdapFilter.Substrings.GetHashCode() -> int
+override DotLdap.Testing.Protocol.LdapFilter.Substrings.ToString() -> string!
+override DotLdap.Testing.Protocol.LdapFilter.ToString() -> string!
+override DotLdap.Testing.Protocol.LdapRequest.Equals(object? obj) -> bool
+override DotLdap.Testing.Protocol.LdapRequest.GetHashCode() -> int
+override DotLdap.Testing.Protocol.LdapRequest.ToString() -> string!
+override DotLdap.Testing.Protocol.LdapResult.Equals(object? obj) -> bool
+override DotLdap.Testing.Protocol.LdapResult.GetHashCode() -> int
+override DotLdap.Testing.Protocol.LdapResult.ToString() -> string!
+override DotLdap.Testing.Protocol.Modification.Equals(object? obj) -> bool
+override DotLdap.Testing.Protocol.Modification.GetHashCode() -> int
+override DotLdap.Testing.Protocol.Modification.ToString() -> string!
+override DotLdap.Testing.Protocol.ModifyDnRequest.<Clone>$() -> DotLdap.Testing.Protocol.ModifyDnRequest!
+override DotLdap.Testing.Protocol.ModifyDnRequest.Equals(object? obj) -> bool
+override DotLdap.Testing.Protocol.ModifyDnRequest.GetHashCode() -> int
+override DotLdap.Testing.Protocol.ModifyDnRequest.ToString() -> string!
+override DotLdap.Testing.Protocol.ModifyRequest.<Clone>$() -> DotLdap.Testing.Protocol.ModifyRequest!
+override DotLdap.Testing.Protocol.ModifyRequest.Equals(object? obj) -> bool
+override DotLdap.Testing.Protocol.ModifyRequest.GetHashCode() -> int
+override DotLdap.Testing.Protocol.ModifyRequest.ToString() -> string!
+override DotLdap.Testing.Protocol.PartialAttribute.Equals(object? obj) -> bool
+override DotLdap.Testing.Protocol.PartialAttribute.GetHashCode() -> int
+override DotLdap.Testing.Protocol.PartialAttribute.ToString() -> string!
+override DotLdap.Testing.Protocol.SearchRequest.<Clone>$() -> DotLdap.Testing.Protocol.SearchRequest!
+override DotLdap.Testing.Protocol.SearchRequest.Equals(object? obj) -> bool
+override DotLdap.Testing.Protocol.SearchRequest.GetHashCode() -> int
+override DotLdap.Testing.Protocol.SearchRequest.ToString() -> string!
+override DotLdap.Testing.Protocol.UnbindRequest.<Clone>$() -> DotLdap.Testing.Protocol.UnbindRequest!
+override DotLdap.Testing.Protocol.UnbindRequest.Equals(object? obj) -> bool
+override DotLdap.Testing.Protocol.UnbindRequest.GetHashCode() -> int
+override DotLdap.Testing.Protocol.UnbindRequest.ToString() -> string!
+override DotLdap.Testing.Rdn.ToString() -> string!
+override DotLdap.Testing.RecordedRequest.Equals(object? obj) -> bool
+override DotLdap.Testing.RecordedRequest.GetHashCode() -> int
+override DotLdap.Testing.RecordedRequest.ToString() -> string!
+override sealed DotLdap.Testing.Protocol.AbandonRequest.Equals(DotLdap.Testing.Protocol.LdapRequest? other) -> bool
+override sealed DotLdap.Testing.Protocol.AddRequest.Equals(DotLdap.Testing.Protocol.LdapRequest? other) -> bool
+override sealed DotLdap.Testing.Protocol.BindRequest.Equals(DotLdap.Testing.Protocol.LdapRequest? other) -> bool
+override sealed DotLdap.Testing.Protocol.CompareRequest.Equals(DotLdap.Testing.Protocol.LdapRequest? other) -> bool
+override sealed DotLdap.Testing.Protocol.DeleteRequest.Equals(DotLdap.Testing.Protocol.LdapRequest? other) -> bool
+override sealed DotLdap.Testing.Protocol.ExtendedRequest.Equals(DotLdap.Testing.Protocol.LdapRequest? other) -> bool
+override sealed DotLdap.Testing.Protocol.LdapFilter.And.Equals(DotLdap.Testing.Protocol.LdapFilter? other) -> bool
+override sealed DotLdap.Testing.Protocol.LdapFilter.Approx.Equals(DotLdap.Testing.Protocol.LdapFilter? other) -> bool
+override sealed DotLdap.Testing.Protocol.LdapFilter.Equality.Equals(DotLdap.Testing.Protocol.LdapFilter? other) -> bool
+override sealed DotLdap.Testing.Protocol.LdapFilter.Extensible.Equals(DotLdap.Testing.Protocol.LdapFilter? other) -> bool
+override sealed DotLdap.Testing.Protocol.LdapFilter.GreaterOrEqual.Equals(DotLdap.Testing.Protocol.LdapFilter? other) -> bool
+override sealed DotLdap.Testing.Protocol.LdapFilter.LessOrEqual.Equals(DotLdap.Testing.Protocol.LdapFilter? other) -> bool
+override sealed DotLdap.Testing.Protocol.LdapFilter.Not.Equals(DotLdap.Testing.Protocol.LdapFilter? other) -> bool
+override sealed DotLdap.Testing.Protocol.LdapFilter.Or.Equals(DotLdap.Testing.Protocol.LdapFilter? other) -> bool
+override sealed DotLdap.Testing.Protocol.LdapFilter.Present.Equals(DotLdap.Testing.Protocol.LdapFilter? other) -> bool
+override sealed DotLdap.Testing.Protocol.LdapFilter.Substrings.Equals(DotLdap.Testing.Protocol.LdapFilter? other) -> bool
+override sealed DotLdap.Testing.Protocol.ModifyDnRequest.Equals(DotLdap.Testing.Protocol.LdapRequest? other) -> bool
+override sealed DotLdap.Testing.Protocol.ModifyRequest.Equals(DotLdap.Testing.Protocol.LdapRequest? other) -> bool
+override sealed DotLdap.Testing.Protocol.SearchRequest.Equals(DotLdap.Testing.Protocol.LdapRequest? other) -> bool
+override sealed DotLdap.Testing.Protocol.UnbindRequest.Equals(DotLdap.Testing.Protocol.LdapRequest? other) -> bool
+static DotLdap.Testing.DirectorySeedExtensions.AddGroup(this DotLdap.Testing.InMemoryDirectory! directory, string! name, params string![]! members) -> DotLdap.Testing.DistinguishedName!
+static DotLdap.Testing.DirectorySeedExtensions.AddJson(this DotLdap.Testing.InMemoryDirectory! directory, string! json) -> int
+static DotLdap.Testing.DirectorySeedExtensions.AddLdif(this DotLdap.Testing.InMemoryDirectory! directory, string! ldif) -> int
+static DotLdap.Testing.DirectorySeedExtensions.AddReferral(this DotLdap.Testing.InMemoryDirectory! directory, string! dn, params string![]! urls) -> DotLdap.Testing.DistinguishedName!
+static DotLdap.Testing.DirectorySeedExtensions.AddToGroup(this DotLdap.Testing.InMemoryDirectory! directory, string! group, DotLdap.Testing.DistinguishedName! member) -> void
+static DotLdap.Testing.DirectorySeedExtensions.AddUser(this DotLdap.Testing.InMemoryDirectory! directory, string! name, string! password, System.Action<DotLdap.Testing.UserBuilder!>? configure = null) -> DotLdap.Testing.DistinguishedName!
+static DotLdap.Testing.DirectorySeedExtensions.GroupDn(this DotLdap.Testing.InMemoryDirectory! directory, string! name) -> DotLdap.Testing.DistinguishedName!
+static DotLdap.Testing.DirectorySeedExtensions.UserDn(this DotLdap.Testing.InMemoryDirectory! directory, string! name) -> DotLdap.Testing.DistinguishedName!
+static DotLdap.Testing.DistinguishedName.implicit operator DotLdap.Testing.DistinguishedName!(string! dn) -> DotLdap.Testing.DistinguishedName!
+static DotLdap.Testing.DistinguishedName.Parse(string! dn) -> DotLdap.Testing.DistinguishedName!
+static DotLdap.Testing.DistinguishedName.TryParse(string? dn, out DotLdap.Testing.DistinguishedName! result) -> bool
+static DotLdap.Testing.LdapRequestContext.operator !=(DotLdap.Testing.LdapRequestContext? left, DotLdap.Testing.LdapRequestContext? right) -> bool
+static DotLdap.Testing.LdapRequestContext.operator ==(DotLdap.Testing.LdapRequestContext? left, DotLdap.Testing.LdapRequestContext? right) -> bool
+static DotLdap.Testing.LdapTestServer.Create() -> DotLdap.Testing.LdapTestServerBuilder!
+static DotLdap.Testing.LdifReader.Parse(string! ldif) -> System.Collections.Generic.IReadOnlyList<DotLdap.Testing.Entry!>!
+static DotLdap.Testing.Protocol.AbandonRequest.operator !=(DotLdap.Testing.Protocol.AbandonRequest? left, DotLdap.Testing.Protocol.AbandonRequest? right) -> bool
+static DotLdap.Testing.Protocol.AbandonRequest.operator ==(DotLdap.Testing.Protocol.AbandonRequest? left, DotLdap.Testing.Protocol.AbandonRequest? right) -> bool
+static DotLdap.Testing.Protocol.AddRequest.operator !=(DotLdap.Testing.Protocol.AddRequest? left, DotLdap.Testing.Protocol.AddRequest? right) -> bool
+static DotLdap.Testing.Protocol.AddRequest.operator ==(DotLdap.Testing.Protocol.AddRequest? left, DotLdap.Testing.Protocol.AddRequest? right) -> bool
+static DotLdap.Testing.Protocol.BindRequest.operator !=(DotLdap.Testing.Protocol.BindRequest? left, DotLdap.Testing.Protocol.BindRequest? right) -> bool
+static DotLdap.Testing.Protocol.BindRequest.operator ==(DotLdap.Testing.Protocol.BindRequest? left, DotLdap.Testing.Protocol.BindRequest? right) -> bool
+static DotLdap.Testing.Protocol.CompareRequest.operator !=(DotLdap.Testing.Protocol.CompareRequest? left, DotLdap.Testing.Protocol.CompareRequest? right) -> bool
+static DotLdap.Testing.Protocol.CompareRequest.operator ==(DotLdap.Testing.Protocol.CompareRequest? left, DotLdap.Testing.Protocol.CompareRequest? right) -> bool
+static DotLdap.Testing.Protocol.DeleteRequest.operator !=(DotLdap.Testing.Protocol.DeleteRequest? left, DotLdap.Testing.Protocol.DeleteRequest? right) -> bool
+static DotLdap.Testing.Protocol.DeleteRequest.operator ==(DotLdap.Testing.Protocol.DeleteRequest? left, DotLdap.Testing.Protocol.DeleteRequest? right) -> bool
+static DotLdap.Testing.Protocol.ExtendedRequest.operator !=(DotLdap.Testing.Protocol.ExtendedRequest? left, DotLdap.Testing.Protocol.ExtendedRequest? right) -> bool
+static DotLdap.Testing.Protocol.ExtendedRequest.operator ==(DotLdap.Testing.Protocol.ExtendedRequest? left, DotLdap.Testing.Protocol.ExtendedRequest? right) -> bool
+static DotLdap.Testing.Protocol.LdapFilter.And.operator !=(DotLdap.Testing.Protocol.LdapFilter.And? left, DotLdap.Testing.Protocol.LdapFilter.And? right) -> bool
+static DotLdap.Testing.Protocol.LdapFilter.And.operator ==(DotLdap.Testing.Protocol.LdapFilter.And? left, DotLdap.Testing.Protocol.LdapFilter.And? right) -> bool
+static DotLdap.Testing.Protocol.LdapFilter.Approx.operator !=(DotLdap.Testing.Protocol.LdapFilter.Approx? left, DotLdap.Testing.Protocol.LdapFilter.Approx? right) -> bool
+static DotLdap.Testing.Protocol.LdapFilter.Approx.operator ==(DotLdap.Testing.Protocol.LdapFilter.Approx? left, DotLdap.Testing.Protocol.LdapFilter.Approx? right) -> bool
+static DotLdap.Testing.Protocol.LdapFilter.Equality.operator !=(DotLdap.Testing.Protocol.LdapFilter.Equality? left, DotLdap.Testing.Protocol.LdapFilter.Equality? right) -> bool
+static DotLdap.Testing.Protocol.LdapFilter.Equality.operator ==(DotLdap.Testing.Protocol.LdapFilter.Equality? left, DotLdap.Testing.Protocol.LdapFilter.Equality? right) -> bool
+static DotLdap.Testing.Protocol.LdapFilter.Extensible.operator !=(DotLdap.Testing.Protocol.LdapFilter.Extensible? left, DotLdap.Testing.Protocol.LdapFilter.Extensible? right) -> bool
+static DotLdap.Testing.Protocol.LdapFilter.Extensible.operator ==(DotLdap.Testing.Protocol.LdapFilter.Extensible? left, DotLdap.Testing.Protocol.LdapFilter.Extensible? right) -> bool
+static DotLdap.Testing.Protocol.LdapFilter.GreaterOrEqual.operator !=(DotLdap.Testing.Protocol.LdapFilter.GreaterOrEqual? left, DotLdap.Testing.Protocol.LdapFilter.GreaterOrEqual? right) -> bool
+static DotLdap.Testing.Protocol.LdapFilter.GreaterOrEqual.operator ==(DotLdap.Testing.Protocol.LdapFilter.GreaterOrEqual? left, DotLdap.Testing.Protocol.LdapFilter.GreaterOrEqual? right) -> bool
+static DotLdap.Testing.Protocol.LdapFilter.LessOrEqual.operator !=(DotLdap.Testing.Protocol.LdapFilter.LessOrEqual? left, DotLdap.Testing.Protocol.LdapFilter.LessOrEqual? right) -> bool
+static DotLdap.Testing.Protocol.LdapFilter.LessOrEqual.operator ==(DotLdap.Testing.Protocol.LdapFilter.LessOrEqual? left, DotLdap.Testing.Protocol.LdapFilter.LessOrEqual? right) -> bool
+static DotLdap.Testing.Protocol.LdapFilter.Not.operator !=(DotLdap.Testing.Protocol.LdapFilter.Not? left, DotLdap.Testing.Protocol.LdapFilter.Not? right) -> bool
+static DotLdap.Testing.Protocol.LdapFilter.Not.operator ==(DotLdap.Testing.Protocol.LdapFilter.Not? left, DotLdap.Testing.Protocol.LdapFilter.Not? right) -> bool
+static DotLdap.Testing.Protocol.LdapFilter.operator !=(DotLdap.Testing.Protocol.LdapFilter? left, DotLdap.Testing.Protocol.LdapFilter? right) -> bool
+static DotLdap.Testing.Protocol.LdapFilter.operator ==(DotLdap.Testing.Protocol.LdapFilter? left, DotLdap.Testing.Protocol.LdapFilter? right) -> bool
+static DotLdap.Testing.Protocol.LdapFilter.Or.operator !=(DotLdap.Testing.Protocol.LdapFilter.Or? left, DotLdap.Testing.Protocol.LdapFilter.Or? right) -> bool
+static DotLdap.Testing.Protocol.LdapFilter.Or.operator ==(DotLdap.Testing.Protocol.LdapFilter.Or? left, DotLdap.Testing.Protocol.LdapFilter.Or? right) -> bool
+static DotLdap.Testing.Protocol.LdapFilter.Parse(string! text) -> DotLdap.Testing.Protocol.LdapFilter!
+static DotLdap.Testing.Protocol.LdapFilter.Present.operator !=(DotLdap.Testing.Protocol.LdapFilter.Present? left, DotLdap.Testing.Protocol.LdapFilter.Present? right) -> bool
+static DotLdap.Testing.Protocol.LdapFilter.Present.operator ==(DotLdap.Testing.Protocol.LdapFilter.Present? left, DotLdap.Testing.Protocol.LdapFilter.Present? right) -> bool
+static DotLdap.Testing.Protocol.LdapFilter.Substrings.operator !=(DotLdap.Testing.Protocol.LdapFilter.Substrings? left, DotLdap.Testing.Protocol.LdapFilter.Substrings? right) -> bool
+static DotLdap.Testing.Protocol.LdapFilter.Substrings.operator ==(DotLdap.Testing.Protocol.LdapFilter.Substrings? left, DotLdap.Testing.Protocol.LdapFilter.Substrings? right) -> bool
+static DotLdap.Testing.Protocol.LdapRequest.operator !=(DotLdap.Testing.Protocol.LdapRequest? left, DotLdap.Testing.Protocol.LdapRequest? right) -> bool
+static DotLdap.Testing.Protocol.LdapRequest.operator ==(DotLdap.Testing.Protocol.LdapRequest? left, DotLdap.Testing.Protocol.LdapRequest? right) -> bool
+static DotLdap.Testing.Protocol.LdapResult.operator !=(DotLdap.Testing.Protocol.LdapResult? left, DotLdap.Testing.Protocol.LdapResult? right) -> bool
+static DotLdap.Testing.Protocol.LdapResult.operator ==(DotLdap.Testing.Protocol.LdapResult? left, DotLdap.Testing.Protocol.LdapResult? right) -> bool
+static DotLdap.Testing.Protocol.Modification.operator !=(DotLdap.Testing.Protocol.Modification? left, DotLdap.Testing.Protocol.Modification? right) -> bool
+static DotLdap.Testing.Protocol.Modification.operator ==(DotLdap.Testing.Protocol.Modification? left, DotLdap.Testing.Protocol.Modification? right) -> bool
+static DotLdap.Testing.Protocol.ModifyDnRequest.operator !=(DotLdap.Testing.Protocol.ModifyDnRequest? left, DotLdap.Testing.Protocol.ModifyDnRequest? right) -> bool
+static DotLdap.Testing.Protocol.ModifyDnRequest.operator ==(DotLdap.Testing.Protocol.ModifyDnRequest? left, DotLdap.Testing.Protocol.ModifyDnRequest? right) -> bool
+static DotLdap.Testing.Protocol.ModifyRequest.operator !=(DotLdap.Testing.Protocol.ModifyRequest? left, DotLdap.Testing.Protocol.ModifyRequest? right) -> bool
+static DotLdap.Testing.Protocol.ModifyRequest.operator ==(DotLdap.Testing.Protocol.ModifyRequest? left, DotLdap.Testing.Protocol.ModifyRequest? right) -> bool
+static DotLdap.Testing.Protocol.PartialAttribute.operator !=(DotLdap.Testing.Protocol.PartialAttribute? left, DotLdap.Testing.Protocol.PartialAttribute? right) -> bool
+static DotLdap.Testing.Protocol.PartialAttribute.operator ==(DotLdap.Testing.Protocol.PartialAttribute? left, DotLdap.Testing.Protocol.PartialAttribute? right) -> bool
+static DotLdap.Testing.Protocol.SearchRequest.operator !=(DotLdap.Testing.Protocol.SearchRequest? left, DotLdap.Testing.Protocol.SearchRequest? right) -> bool
+static DotLdap.Testing.Protocol.SearchRequest.operator ==(DotLdap.Testing.Protocol.SearchRequest? left, DotLdap.Testing.Protocol.SearchRequest? right) -> bool
+static DotLdap.Testing.Protocol.UnbindRequest.operator !=(DotLdap.Testing.Protocol.UnbindRequest? left, DotLdap.Testing.Protocol.UnbindRequest? right) -> bool
+static DotLdap.Testing.Protocol.UnbindRequest.operator ==(DotLdap.Testing.Protocol.UnbindRequest? left, DotLdap.Testing.Protocol.UnbindRequest? right) -> bool
+static DotLdap.Testing.RecordedRequest.operator !=(DotLdap.Testing.RecordedRequest? left, DotLdap.Testing.RecordedRequest? right) -> bool
+static DotLdap.Testing.RecordedRequest.operator ==(DotLdap.Testing.RecordedRequest? left, DotLdap.Testing.RecordedRequest? right) -> bool
+static DotLdap.Testing.VirtualAttribute.DistinguishedNameAttribute() -> DotLdap.Testing.VirtualAttribute!
+static DotLdap.Testing.VirtualAttribute.EntryDn() -> DotLdap.Testing.VirtualAttribute!
+static DotLdap.Testing.VirtualAttribute.MemberOf(bool isOperational) -> DotLdap.Testing.VirtualAttribute!
+static readonly DotLdap.Testing.DistinguishedName.Root -> DotLdap.Testing.DistinguishedName!
+static readonly DotLdap.Testing.Protocol.LdapResult.Success -> DotLdap.Testing.Protocol.LdapResult!
+virtual DotLdap.Testing.LdapRequestInterceptor.Invoke(DotLdap.Testing.LdapRequestContext! context) -> DotLdap.Testing.Protocol.LdapResult?
+virtual DotLdap.Testing.LdapServerFixture.Configure(DotLdap.Testing.LdapTestServerBuilder! builder) -> void
+virtual DotLdap.Testing.LdapServerFixture.Dispose(bool disposing) -> void
+virtual DotLdap.Testing.Protocol.LdapFilter.EqualityContract.get -> System.Type!
+virtual DotLdap.Testing.Protocol.LdapFilter.Equals(DotLdap.Testing.Protocol.LdapFilter? other) -> bool
+virtual DotLdap.Testing.Protocol.LdapFilter.PrintMembers(System.Text.StringBuilder! builder) -> bool
+virtual DotLdap.Testing.Protocol.LdapRequest.EqualityContract.get -> System.Type!
+virtual DotLdap.Testing.Protocol.LdapRequest.Equals(DotLdap.Testing.Protocol.LdapRequest? other) -> bool
+virtual DotLdap.Testing.Protocol.LdapRequest.PrintMembers(System.Text.StringBuilder! builder) -> bool

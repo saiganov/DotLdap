@@ -1,0 +1,28 @@
+<Solution>
+  <Folder Name="/build/">
+    <File Path="Directory.Build.props" />
+    <File Path="Directory.Packages.props" />
+    <File Path="global.json" />
+    <File Path="NuGet.Config" />
+    <File Path="README.md" />
+    <File Path="RELEASE_NOTES.md" />
+    <File Path="KNOWN_DIFFERENCES.md" />
+  </Folder>
+  <Folder Name="/src/">
+    <Project Path="src/DotLdap.Testing/DotLdap.Testing.csproj" />
+  </Folder>
+  <Folder Name="/samples/">
+    <Project Path="samples/DotLdap.Sample.Api/DotLdap.Sample.Api.csproj" />
+    <Project Path="samples/DotLdap.Sample.Api.Tests/DotLdap.Sample.Api.Tests.csproj" />
+    <Project Path="samples/DotLdap.Sample.ActiveDirectory/DotLdap.Sample.ActiveDirectory.csproj" />
+    <Project Path="samples/DotLdap.Sample.ActiveDirectory.Tests/DotLdap.Sample.ActiveDirectory.Tests.csproj" />
+    <Project Path="samples/DotLdap.Sample.Standalone/DotLdap.Sample.Standalone.csproj" />
+    <Project Path="samples/DotLdap.Sample.Standalone.Tests/DotLdap.Sample.Standalone.Tests.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/DotLdap.Testing.Tests/DotLdap.Testing.Tests.csproj" />
+  </Folder>
+  <Folder Name="/benchmarks/">
+    <Project Path="benchmarks/DotLdap.Testing.Benchmarks/DotLdap.Testing.Benchmarks.csproj" />
+  </Folder>
+</Solution>

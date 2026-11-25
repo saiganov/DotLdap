@@ -1,0 +1,42 @@
+name: Nightly fuzzing
+
+# The fuzz tests with fifty times the cases and a new seed every night, to find what the fixed seed of PR CI does
+# not. A failure prints the seed and the input; rerun it with DOTLDAP_FUZZ_SEED and add the case to FuzzFindingsTests.
+on:
+  schedule:
+    - cron: '30 2 * * *'
+  workflow_dispatch:
+    inputs:
+      seed:
+        description: 'Seed (empty: the run number)'
+        required: false
+      scale:
+        description: 'Scale'
+        required: false
+        default: '50'
+
+permissions:
+  contents: read
+
+jobs:
+  fuzz:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    env:
+      DOTLDAP_FUZZ_SEED: ${{ inputs.seed || github.run_number }}
+      DOTLDAP_FUZZ_SCALE: ${{ inputs.scale || '50' }}
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-dotnet@v6
+        with:
+          global-json-file: global.json
+      - name: Install the OpenLDAP client library
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libldap2 || sudo apt-get install -y libldap-2.5-0
+          lib=$(ldconfig -p | awk '/libldap\.so\.2 /{print $NF; exit}')
+          dir=$(dirname "$lib")
+          [ -e "$dir/libldap-2.5.so.0" ] || sudo ln -s "$lib" "$dir/libldap-2.5.so.0"
+      - run: dotnet build tests/DotLdap.Testing.Tests -c Release
+      - name: Fuzz (seed ${{ env.DOTLDAP_FUZZ_SEED }}, scale ${{ env.DOTLDAP_FUZZ_SCALE }})
+        run: dotnet test --project tests/DotLdap.Testing.Tests --no-build -c Release --filter-namespace 'DotLdap.Testing.Tests.Fuzzing'

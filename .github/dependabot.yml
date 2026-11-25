@@ -1,0 +1,26 @@
+# Weekly dependency updates, grouped so each ecosystem opens at most one PR (plus separate PRs for major versions).
+version: 2
+updates:
+  - package-ecosystem: nuget
+    directory: /
+    schedule:
+      interval: weekly
+    open-pull-requests-limit: 5
+    ignore:
+      # On Linux it loads libldap under the soname the CI step provides; move it together with that step.
+      # Only major versions, so minor, patch and security updates still arrive.
+      - dependency-name: System.DirectoryServices.Protocols
+        update-types: [version-update:semver-major]
+      - dependency-name: System.DirectoryServices
+        update-types: [version-update:semver-major]
+    groups:
+      nuget-minor-and-patch:
+        update-types: [minor, patch]
+
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
+    groups:
+      actions:
+        patterns: ['*']

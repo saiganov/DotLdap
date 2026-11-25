@@ -1,0 +1,130 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+    tags: ['v*']
+  pull_request:
+    # ready_for_review: a draft PR runs nothing; marking it ready starts the tests.
+    types: [opened, synchronize, reopened, ready_for_review]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: ${{ !startsWith(github.ref, 'refs/tags/') }}
+
+jobs:
+  test:
+    # Draft PRs are work in progress: no CI until the PR is marked ready for review.
+    if: github.event_name != 'pull_request' || !github.event.pull_request.draft
+    name: Test (${{ matrix.os }})
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 20
+    strategy:
+      fail-fast: false
+      matrix:
+        # Windows runs the ADSI (System.DirectoryServices) tests, which are skipped elsewhere; Linux and macOS
+        # drive System.DirectoryServices.Protocols through the OpenLDAP client library.
+        os: [ubuntu-latest, windows-latest, macos-latest]
+    env:
+      DOTNET_NOLOGO: true
+      DOTNET_CLI_TELEMETRY_OPTOUT: true
+    defaults:
+      run:
+        shell: bash
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-dotnet@v6
+        with:
+          global-json-file: global.json
+          # The library targets net8.0; the tests and samples run on net10.0.
+          dotnet-version: 8.0.x
+
+      # The library has no native dependencies. The tests drive it through
+      # System.DirectoryServices.Protocols, which wraps the OpenLDAP client library on Linux
+      # and looks for it under the 2.5 soname even where the distribution ships 2.6.
+      - name: Install the OpenLDAP client library
+        if: runner.os == 'Linux'
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libldap2 || sudo apt-get install -y libldap-2.5-0
+          lib=$(ldconfig -p | awk '/libldap\.so\.2 /{print $NF; exit}')
+          dir=$(dirname "$lib")
+          [ -e "$dir/libldap-2.5.so.0" ] || sudo ln -s "$lib" "$dir/libldap-2.5.so.0"
+
+      - run: dotnet restore
+      - run: dotnet build --no-restore -c Release
+
+      # Every test project, the samples' included.
+      - name: Test
+        run: |
+          # Runs every project even after a failure, so one red project does not hide another.
+          failed=0
+          for project in tests/*/*.csproj samples/*.Tests/*.csproj; do
+            echo "::group::$project"
+            dotnet test --project "$project" --no-build -c Release || { failed=1; echo "::error::$project failed"; }
+            echo "::endgroup::"
+          done
+          exit $failed
+
+      # Runs package validation on every PR, not only when publishing.
+      - name: Pack
+        if: runner.os == 'Linux'
+        run: |
+          set -e
+          for project in src/*/*.csproj; do
+            dotnet pack "$project" --no-build -c Release -o artifacts
+          done
+
+      - uses: actions/upload-artifact@v7
+        if: runner.os == 'Linux'
+        with:
+          name: packages
+          path: |
+            artifacts/*.nupkg
+            artifacts/*.snupkg
+
+  publish:
+    # Packages go to nuget.org. Only a v* tag publishes, with the version from the tag (v0.1.0-preview.1 -> 0.1.0-preview.1). Pushes to main do not.
+    if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags/v') && github.repository_owner == 'saiganov'
+    needs: test
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write # Trusted Publishing: nuget.org trades the workflow's OIDC token for a short-lived API key
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-dotnet@v6
+        with:
+          global-json-file: global.json
+      # The release notes come from the RELEASE_NOTES.md section of VersionPrefix, so the tag must carry that version.
+      - name: Check the tag against VersionPrefix
+        run: |
+          prefix=$(dotnet msbuild src/DotLdap.Testing -getProperty:VersionPrefix)
+          version=${GITHUB_REF_NAME#v}
+          case "$version" in
+            "$prefix"|"$prefix"-*) ;;
+            *) echo "::error::Tag $GITHUB_REF_NAME does not match VersionPrefix $prefix in Directory.Build.props"; exit 1 ;;
+          esac
+      - run: dotnet pack src/DotLdap.Testing -c Release -o artifacts -p:Version=${GITHUB_REF_NAME#v}
+      - name: Log in to nuget.org
+        id: nuget
+        uses: NuGet/login@v1
+        with:
+          user: ${{ secrets.NUGET_USER }}
+      # Pushes the .snupkg symbol packages next to each .nupkg as well.
+      - name: Push to nuget.org
+        run: >
+          dotnet nuget push "artifacts/*.nupkg"
+          --source https://api.nuget.org/v3/index.json
+          --api-key "${{ steps.nuget.outputs.NUGET_API_KEY }}"
+          --skip-duplicate
+      - uses: actions/upload-artifact@v7
+        with:
+          name: packages
+          path: |
+            artifacts/*.nupkg
+            artifacts/*.snupkg

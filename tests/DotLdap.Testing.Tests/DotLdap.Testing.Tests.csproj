@@ -1,0 +1,27 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <!-- The library ships for net8.0, so it is tested on that runtime as well as the newest one. -->
+    <TargetFrameworks>$(NetLibVersion);$(NetTestVersion)</TargetFrameworks>
+    <OutputType>Exe</OutputType>
+    <IsPackable>false</IsPackable>
+    <IsTestProject>true</IsTestProject>
+    <UseMicrosoftTestingPlatformRunner>true</UseMicrosoftTestingPlatformRunner>
+    <TestingPlatformDotnetTestSupport>true</TestingPlatformDotnetTestSupport>
+    <GenerateDocumentationFile>false</GenerateDocumentationFile>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Using Include="Xunit" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="../../src/DotLdap.Testing/DotLdap.Testing.csproj" />
+    <PackageReference Include="xunit.v3" />
+    <PackageReference Include="xunit.runner.visualstudio" />
+    <PackageReference Include="System.DirectoryServices.Protocols" />
+    <PackageReference Include="System.DirectoryServices" />
+    <PackageReference Include="Novell.Directory.Ldap.NETStandard" />
+  </ItemGroup>
+
+</Project>

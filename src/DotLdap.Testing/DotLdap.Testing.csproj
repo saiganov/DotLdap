@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>$(NetLibVersion)</TargetFramework>
+    <PackageId>DotLdap.Testing</PackageId>
+    <Description>In-process LDAP server for .NET integration tests: starts in milliseconds, data defined in code, a generic (OpenLDAP-like) and an Active Directory flavour. No Docker.</Description>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <InternalsVisibleTo Include="DotLdap.Testing.Tests" />
+  </ItemGroup>
+
+</Project>

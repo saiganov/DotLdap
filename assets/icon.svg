@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="256" height="256">
+  <!-- DotLdap.Testing package icon: a directory tree (root, two branches, leaves) with a check mark. Source for icon.png (256x256). -->
+  <rect width="256" height="256" rx="48" fill="#1f4e79"/>
+  <g stroke="#ffffff" stroke-width="10" stroke-linecap="round" fill="none">
+    <path d="M128 70 V104 M76 104 H180 M76 104 V172 M180 104 V136 M52 172 H100 M52 172 V190 M100 172 V190"/>
+  </g>
+  <circle cx="128" cy="58" r="20" fill="#ffffff"/>
+  <circle cx="76" cy="140" r="16" fill="#7fd1ff"/>
+  <circle cx="180" cy="140" r="16" fill="#7fd1ff"/>
+  <circle cx="52" cy="190" r="13" fill="#7fd1ff"/>
+  <circle cx="100" cy="190" r="13" fill="#7fd1ff"/>
+  <path d="M156 190 L176 210 L214 168" stroke="#7fe08a" stroke-width="14" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+</svg>
