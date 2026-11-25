@@ -92,8 +92,13 @@ jobs:
     if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags/v') && github.repository_owner == 'saiganov'
     needs: test
     runs-on: ubuntu-latest
+    # The nuget.org trusted publishing policy names this environment; required reviewers on it in the repository
+    # settings turn every release into a one-click approval.
+    environment:
+      name: nuget
+      url: https://www.nuget.org/packages/DotLdap.Testing
     permissions:
-      contents: read
+      contents: write # the GitHub release with the packages
       id-token: write # Trusted Publishing: nuget.org trades the workflow's OIDC token for a short-lived API key
     steps:
       - uses: actions/checkout@v7
@@ -122,6 +127,16 @@ jobs:
           --source https://api.nuget.org/v3/index.json
           --api-key "${{ steps.nuget.outputs.NUGET_API_KEY }}"
           --skip-duplicate
+      # A GitHub release for the tag, with the packages and the RELEASE_NOTES.md section of this version.
+      - name: Create the GitHub release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          prefix=$(dotnet msbuild src/DotLdap.Testing -getProperty:VersionPrefix)
+          awk -v head="#### $prefix " 'index($0, head) == 1 { on = 1; next } on && /^#### / { exit } on' RELEASE_NOTES.md > release-notes.md
+          prerelease=$([[ "$GITHUB_REF_NAME" == *-* ]] && echo --prerelease || true)
+          gh release create "$GITHUB_REF_NAME" artifacts/*.nupkg artifacts/*.snupkg \
+            --title "$GITHUB_REF_NAME" --notes-file release-notes.md --verify-tag $prerelease
       - uses: actions/upload-artifact@v7
         with:
           name: packages

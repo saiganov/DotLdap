@@ -314,7 +314,7 @@ The package goes to nuget.org as a pre-release until 1.0, so pass `--prerelease`
 dotnet add package DotLdap.Testing --prerelease
 ```
 
-Packages are published only from `v*` tags (for example `v0.1.0-preview.1`), with symbols and Source Link; pushes to `main` build, test and pack without publishing. Publishing uses nuget.org Trusted Publishing: the repository needs a `NUGET_USER` secret (the nuget.org account name) and a trusted publishing policy for `ci.yml` on nuget.org.
+Packages are published only from `v*` tags (for example `v0.1.0-preview.1`), with symbols and Source Link; pushes to `main` build, test and pack without publishing. How to set up publishing once and how to cut a release: [RELEASING.md](RELEASING.md).
 
 ## Building
 
