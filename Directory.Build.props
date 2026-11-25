@@ -67,7 +67,8 @@
       <_AllReleaseNotes>$([System.IO.File]::ReadAllText('$(MSBuildThisFileDirectory)RELEASE_NOTES.md'))</_AllReleaseNotes>
       <_CurrentReleaseNotes>$([System.Text.RegularExpressions.Regex]::Match($(_AllReleaseNotes), '(?ms)^#### $([System.Text.RegularExpressions.Regex]::Escape($(VersionPrefix))) .*?(?=\r?\n#### |\z)').Value.Trim())</_CurrentReleaseNotes>
       <!-- nuget.org shows release notes as plain text: drop the heading line and the code backticks. -->
-      <_PlainReleaseNotes>$([System.Text.RegularExpressions.Regex]::Replace($([System.Text.RegularExpressions.Regex]::Replace($(_CurrentReleaseNotes), '^#### .*??
+      <_PlainReleaseNotes>$([System.Text.RegularExpressions.Regex]::Replace($([System.Text.RegularExpressions.Regex]::Replace($(_CurrentReleaseNotes), '^#### .*?
+?
 ', '')), '`', '').Trim())</_PlainReleaseNotes>
       <PackageReleaseNotes>$(_PlainReleaseNotes)
 
