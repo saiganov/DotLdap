@@ -127,11 +127,16 @@ jobs:
           --source https://api.nuget.org/v3/index.json
           --api-key "${{ steps.nuget.outputs.NUGET_API_KEY }}"
           --skip-duplicate
-      # A GitHub release for the tag, with the packages and the RELEASE_NOTES.md section of this version.
+      # A GitHub release for the tag, with the packages and the RELEASE_NOTES.md section of this version. When the
+      # release was published by hand on GitHub (which is what created the tag), only the packages are added to it.
       - name: Create the GitHub release
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
+          if gh release view "$GITHUB_REF_NAME" > /dev/null 2>&1; then
+            gh release upload "$GITHUB_REF_NAME" artifacts/*.nupkg artifacts/*.snupkg --clobber
+            exit 0
+          fi
           prefix=$(dotnet msbuild src/DotLdap.Testing -getProperty:VersionPrefix)
           awk -v head="#### $prefix " 'index($0, head) == 1 { on = 1; next } on && /^#### / { exit } on' RELEASE_NOTES.md > release-notes.md
           prerelease=$([[ "$GITHUB_REF_NAME" == *-* ]] && echo --prerelease || true)
