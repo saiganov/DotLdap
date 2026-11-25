@@ -1,0 +1,36 @@
+name: CodeQL
+
+# Static analysis of the C# code: on pushes to main, on PRs and weekly, so that new queries reach old code too.
+# Results appear under Security → Code scanning.
+on:
+  push:
+    branches: [main]
+  pull_request:
+  schedule:
+    - cron: '17 4 * * 1'
+
+permissions:
+  contents: read
+
+jobs:
+  analyze:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    permissions:
+      contents: read
+      security-events: write
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-dotnet@v6
+        with:
+          global-json-file: global.json
+          dotnet-version: 8.0.x
+      - uses: github/codeql-action/init@v4
+        with:
+          languages: csharp
+          build-mode: manual
+          queries: security-and-quality
+      - run: dotnet build DotLdap.Testing.slnx -c Release
+      - uses: github/codeql-action/analyze@v4
+        with:
+          category: /language:csharp

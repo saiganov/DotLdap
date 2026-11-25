@@ -332,6 +332,10 @@ Warnings are errors. Every public member of the library has an XML comment (CS15
 
 `src/DotLdap.Testing` has `PublicAPI.Shipped.txt` and `PublicAPI.Unshipped.txt`, checked by `Microsoft.CodeAnalysis.PublicApiAnalyzers`. Adding, removing or changing a public member fails the build (RS0016/RS0017) until the line is added to or removed from `PublicAPI.Unshipped.txt`; the IDE code fix, or `dotnet format analyzers src/DotLdap.Testing --diagnostics RS0016 --severity warn`, writes the line for you. When a version is released, move every line from `Unshipped` to the end of `Shipped` (keeping the `#nullable enable` header in both files) in the release commit, so `Unshipped` lists only what changed since the last release. `pack` also runs package validation; a baseline version for it is set after 1.0.0. Release notes go into `RELEASE_NOTES.md` under a `#### X.Y.Z` heading that matches `VersionPrefix` in `Directory.Build.props`; packing fails without one.
 
+## Security
+
+Report vulnerabilities privately, as [SECURITY.md](SECURITY.md) describes, not in a public issue.
+
 ## License
 
 [MIT](LICENSE)
